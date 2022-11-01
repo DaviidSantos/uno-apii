@@ -1,0 +1,87 @@
+package com.solbs.unoapi.entities;
+
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "tb_solicitacao_de_analise")
+public class SolicitacaoDeAnalise {
+    private static final Long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idSA;
+    private String tipoDeAnalise;
+    private String informacoesGerais;
+    private String consideracoesGerais;
+
+    @ManyToOne
+    @JoinColumn(name = "cnpj_solicitante")
+    private Solicitante solicitante;
+
+    public SolicitacaoDeAnalise() {
+    }
+
+    public SolicitacaoDeAnalise(Long idSA, String tipoDeAnalise, String informacoesGerais, String consideracoesGerais, Solicitante solicitante) {
+        this.idSA = idSA;
+        this.tipoDeAnalise = tipoDeAnalise;
+        this.informacoesGerais = informacoesGerais;
+        this.consideracoesGerais = consideracoesGerais;
+        this.solicitante = solicitante;
+    }
+
+    public Long getIdSA() {
+        return idSA;
+    }
+
+    public void setIdSA(Long idSA) {
+        this.idSA = idSA;
+    }
+
+    public String getTipoDeAnalise() {
+        return tipoDeAnalise;
+    }
+
+    public void setTipoDeAnalise(String tipoDeAnalise) {
+        this.tipoDeAnalise = tipoDeAnalise;
+    }
+
+    public String getInformacoesGerais() {
+        return informacoesGerais;
+    }
+
+    public void setInformacoesGerais(String informacoesGerais) {
+        this.informacoesGerais = informacoesGerais;
+    }
+
+    public String getConsideracoesGerais() {
+        return consideracoesGerais;
+    }
+
+    public void setConsideracoesGerais(String consideracoesGerais) {
+        this.consideracoesGerais = consideracoesGerais;
+    }
+
+    public Solicitante getSolicitante() {
+        return solicitante;
+    }
+
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SolicitacaoDeAnalise that = (SolicitacaoDeAnalise) o;
+
+        return Objects.equals(idSA, that.idSA);
+    }
+
+    @Override
+    public int hashCode() {
+        return idSA != null ? idSA.hashCode() : 0;
+    }
+}
