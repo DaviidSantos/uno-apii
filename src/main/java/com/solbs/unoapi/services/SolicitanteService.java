@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SolicitanteService {
@@ -18,6 +19,11 @@ public class SolicitanteService {
 
     public List<Solicitante> retornarTodosSolicitantes(){
         return solicitanteRepository.findAll();
+    }
+
+    public Solicitante retornarSolicitantePorCnpj(String cnpj){
+        Optional<Solicitante> obj = solicitanteRepository.findById(cnpj);
+        return obj.get();
     }
 
 }
