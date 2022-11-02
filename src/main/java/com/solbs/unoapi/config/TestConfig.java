@@ -1,7 +1,12 @@
 package com.solbs.unoapi.config;
 
+import com.solbs.unoapi.entities.Amostra;
+import com.solbs.unoapi.entities.Ensaio;
 import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
 import com.solbs.unoapi.entities.Solicitante;
+import com.solbs.unoapi.entities.enums.StatusAmostra;
+import com.solbs.unoapi.repositories.AmostraRepository;
+import com.solbs.unoapi.repositories.EnsaioRepository;
 import com.solbs.unoapi.repositories.SolicitacaoDeAnaliseRepository;
 import com.solbs.unoapi.repositories.SolicitanteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +14,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Arrays;
 
 @Configuration
@@ -19,6 +26,12 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private SolicitacaoDeAnaliseRepository solicitacaoDeAnaliseRepository;
+
+    @Autowired
+    private AmostraRepository amostraRepository;
+
+    @Autowired
+    private EnsaioRepository ensaioRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -32,5 +45,16 @@ public class TestConfig implements CommandLineRunner {
         SolicitacaoDeAnalise sa3 = new SolicitacaoDeAnalise(null, "Monitoramento", "Teste", "Testando", s2);
         solicitacaoDeAnaliseRepository.saveAll(Arrays.asList(sa1, sa2, sa3));
 
+        Amostra a1 = new Amostra(null, sa1, StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Capsula", "123456789", null);
+        Amostra a2 = new Amostra(null, sa2,StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Pilula", "132456789", null);
+
+        amostraRepository.saveAll(Arrays.asList(a1, a2));
+
+        Ensaio e1 = new Ensaio(null, "Degradação", "15x", null, a1);
+        Ensaio e2 = new Ensaio(null, "Karl Fischer", "15x", null, a1);
+        Ensaio e3 = new Ensaio(null, "Solubilidade", "15x", null, a1);
+        Ensaio e4 = new Ensaio(null, "Degradação", "15x", null, a2);
+
+        ensaioRepository.saveAll(Arrays.asList(e1, e2, e3, e4));
     }
 }

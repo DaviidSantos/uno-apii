@@ -3,7 +3,9 @@ package com.solbs.unoapi.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_solicitacao_de_analise")
@@ -21,6 +23,9 @@ public class SolicitacaoDeAnalise {
     @ManyToOne
     @JoinColumn(name = "cnpj_solicitante")
     private Solicitante solicitante;
+
+    @OneToMany(mappedBy = "solicitacaoDeAnalise")
+    private Set<Amostra> amostras = new HashSet<>();
 
     public SolicitacaoDeAnalise() {
     }
@@ -71,6 +76,10 @@ public class SolicitacaoDeAnalise {
 
     public void setSolicitante(Solicitante solicitante) {
         this.solicitante = solicitante;
+    }
+
+    public Set<Amostra> getAmostras() {
+        return amostras;
     }
 
     @Override
