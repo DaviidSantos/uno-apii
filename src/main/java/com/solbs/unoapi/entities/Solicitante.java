@@ -1,9 +1,6 @@
 package com.solbs.unoapi.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,6 +12,7 @@ public class Solicitante implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
+    @Column(updatable = false)
     private String cnpj;
     private String nomeSolicitante;
     private String cep;
