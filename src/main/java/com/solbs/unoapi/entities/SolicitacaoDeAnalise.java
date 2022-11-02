@@ -1,5 +1,7 @@
 package com.solbs.unoapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -15,6 +17,7 @@ public class SolicitacaoDeAnalise {
     private String informacoesGerais;
     private String consideracoesGerais;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "cnpj_solicitante")
     private Solicitante solicitante;
