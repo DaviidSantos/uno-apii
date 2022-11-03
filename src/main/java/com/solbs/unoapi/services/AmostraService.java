@@ -15,4 +15,13 @@ public class AmostraService {
     public List<Amostra> retornarTodasAmostras(){
         return amostraRepository.findAll();
     }
+
+    public Amostra retornarAmostraPeloId(Long idAmostra) {
+        return amostraRepository.findById(idAmostra).get();
+    }
+
+    public Amostra cadastrarAmostra(Amostra amostra){
+        return amostraRepository.save(amostra);
+    }
+
 }
