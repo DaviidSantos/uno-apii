@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Classe de service da entidade Ensaio, utilizada pra se comunicar com a base de dados
+ */
 @Service
 public class EnsaioService {
     @Autowired
@@ -14,5 +17,13 @@ public class EnsaioService {
 
     public List<Ensaio> retornarTodosEnsaios(){
         return ensaioRepository.findAll();
+    }
+
+    public Ensaio retornarEnsaioPorId(Long id) {
+        return ensaioRepository.findById(id).get();
+    }
+
+    public Ensaio cadastrarEnsaio(Ensaio ensaio) {
+        return ensaioRepository.save(ensaio);
     }
 }

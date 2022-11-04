@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.util.Objects;
 
+/**
+ * Entidade ensaio
+ */
 @Entity
 @Table(name = "tb_ensaio")
 public class Ensaio {
