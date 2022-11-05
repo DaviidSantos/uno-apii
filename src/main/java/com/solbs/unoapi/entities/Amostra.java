@@ -19,6 +19,8 @@ public class Amostra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAmostra;
+    
+    private String nomeAmostra;
 
     @JsonIgnore
     @ManyToOne
@@ -36,8 +38,9 @@ public class Amostra {
     public Amostra() {
     }
 
-    public Amostra(Long idAmostra, SolicitacaoDeAnalise solicitacaoDeAnalise, StatusAmostra statusAmostra, Instant dataDeEntrada, String tipo, String notaFiscal, LocalDate validade) {
+    public Amostra(Long idAmostra, String nomeAmostra, SolicitacaoDeAnalise solicitacaoDeAnalise, StatusAmostra statusAmostra, Instant dataDeEntrada, String tipo, String notaFiscal, LocalDate validade) {
         this.idAmostra = idAmostra;
+        this.nomeAmostra = nomeAmostra;
         this.solicitacaoDeAnalise = solicitacaoDeAnalise;
         this.statusAmostra = statusAmostra;
         this.dataDeEntrada = dataDeEntrada;
@@ -52,6 +55,14 @@ public class Amostra {
 
     public void setIdAmostra(Long idAmostra) {
         this.idAmostra = idAmostra;
+    }
+
+    public String getNomeAmostra() {
+        return nomeAmostra;
+    }
+
+    public void setNomeAmostra(String nomeAmostra) {
+        this.nomeAmostra = nomeAmostra;
     }
 
     public SolicitacaoDeAnalise getSolicitacaoDeAnalise() {
