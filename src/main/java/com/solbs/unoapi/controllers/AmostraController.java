@@ -30,8 +30,8 @@ public class AmostraController {
      * @return Entidade de resposta com a lista com amostras
      */
     @GetMapping
-    public ResponseEntity<List<Amostra>> retornarTodasAmostras(){
-        List<Amostra> amostras = amostraService.retornarTodasAmostras();
+    public ResponseEntity<List<Amostra>> findAllAmostras(){
+        List<Amostra> amostras = amostraService.findAll();
         return ResponseEntity.ok().body(amostras);
     }
 
@@ -42,8 +42,8 @@ public class AmostraController {
      * @return Entidade de resposta com a amostra
      */
     @GetMapping("/{idAmostra}")
-    public ResponseEntity<Amostra> retornarAmostraPeloId(@PathVariable Long idAmostra){
-        Amostra amostra = amostraService.retornarAmostraPeloId(idAmostra);
+    public ResponseEntity<Amostra> findById(@PathVariable Long idAmostra){
+        Amostra amostra = amostraService.findById(idAmostra);
         return ResponseEntity.status(HttpStatus.OK).body(amostra);
     }
 
@@ -53,29 +53,39 @@ public class AmostraController {
      * @return Entidade de resposta com a amostra cadastrada
      */
     @PostMapping
-    public ResponseEntity<Amostra> cadastrarAmostra(@RequestBody AmostraDTO amostraDTO){
+    public ResponseEntity<Amostra> saveAmostra(@RequestBody AmostraDTO amostraDTO){
         Amostra amostra = new Amostra();
         SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.retornarSolicitacaoDeAnalisePorId(amostraDTO.getSolicitacaoDeAnalise());
         BeanUtils.copyProperties(amostraDTO, amostra);
         StatusAmostra statusAmostra = StatusAmostra.valor(amostraDTO.getStatusAmostra());
+        amostra.setStatusAmostra(statusAmostra);
         amostra.setSolicitacaoDeAnalise(solicitacaoDeAnalise);
         amostra.setDataDeEntrada(Instant.now());
-        amostra.setStatusAmostra(statusAmostra);
-        return ResponseEntity.status(HttpStatus.CREATED).body(amostraService.cadastrarAmostra(amostra));
+        return ResponseEntity.status(HttpStatus.CREATED).body(amostraService.save(amostra));
     }
 
     /**
-     * Método que atualiza o Status da amostra
+     * Método HTTP que atualiza o Status da amostra
      * @param idAmostra id da amostra que terá o status atualizado
      * @param status código int do novo status
      * @return Entidade de resposta com a amostra atualizada
      */
     @PutMapping("/{idAmostra}")
-    public ResponseEntity<Amostra> atualizarStatusAmostra(@PathVariable Long idAmostra, @RequestBody int status){
-        Amostra amostra = amostraService.retornarAmostraPeloId(idAmostra);
+    public ResponseEntity<Amostra> updateStatusAmostra(@PathVariable Long idAmostra, @RequestBody int status){
+        Amostra amostra = amostraService.findById(idAmostra);
         StatusAmostra statusAmostra = StatusAmostra.valor(status);
         amostra.setStatusAmostra(statusAmostra);
-        return ResponseEntity.status(HttpStatus.OK).body(amostraService.cadastrarAmostra(amostra));
+        return ResponseEntity.status(HttpStatus.OK).body(amostraService.save(amostra));
+    }
+
+    /**
+     * Método HTTP que retorna uma lista com amostras em análise
+     * @return lista de amostras
+     */
+    @GetMapping("/em-analise")
+    public ResponseEntity<List<Amostra>> findAmostraEmAnalise(){
+        List<Amostra> amostrasEmAnalise = amostraService.findAmostraEmAnalise();
+        return ResponseEntity.status(HttpStatus.OK).body(amostrasEmAnalise);
     }
 }
 

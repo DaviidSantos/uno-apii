@@ -12,16 +12,19 @@ public class AmostraService {
     @Autowired
     private AmostraRepository amostraRepository;
 
-    public List<Amostra> retornarTodasAmostras(){
+    public List<Amostra> findAll(){
         return amostraRepository.findAll();
     }
 
-    public Amostra retornarAmostraPeloId(Long idAmostra) {
+    public Amostra findById(Long idAmostra) {
         return amostraRepository.findById(idAmostra).get();
     }
 
-    public Amostra cadastrarAmostra(Amostra amostra){
+    public Amostra save(Amostra amostra){
         return amostraRepository.save(amostra);
     }
 
+    public List<Amostra> findAmostraEmAnalise(){
+        return amostraRepository.findAmostraEmAnalise();
+    }
 }
