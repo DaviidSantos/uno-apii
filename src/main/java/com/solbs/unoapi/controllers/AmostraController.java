@@ -79,13 +79,25 @@ public class AmostraController {
     }
 
     /**
+     * Método HTTP que retorna uma lista de amostras com analises concluídas
+     * @return entidade de resposta com lista de amostras
+     */
+    @GetMapping("/concluido")
+    public ResponseEntity<List<Amostra>> findAmostraConcluida(){
+        List<Amostra> amostrasConcluidas = amostraService.findAmostraAnaliseFinalizada();
+        return ResponseEntity.status(HttpStatus.OK).body(amostrasConcluidas);
+    }
+
+    /**
      * Método HTTP que retorna uma lista com amostras em análise
-     * @return lista de amostras
+     * @return entidade de resposta com lista de amostras
      */
     @GetMapping("/em-analise")
     public ResponseEntity<List<Amostra>> findAmostraEmAnalise(){
         List<Amostra> amostrasEmAnalise = amostraService.findAmostraEmAnalise();
         return ResponseEntity.status(HttpStatus.OK).body(amostrasEmAnalise);
     }
+
+
 }
 
