@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.Instant;
 import java.util.List;
 
+/**
+ * Controlador da entidade amostra
+ */
 @RestController
 @RequestMapping("/amostra")
 public class AmostraController {
@@ -98,6 +101,24 @@ public class AmostraController {
         return ResponseEntity.status(HttpStatus.OK).body(amostrasEmAnalise);
     }
 
+    /**
+     * Método HTTP que retorna uma lista com amostras aguardando análise
+     * @return Entidade de resposta com lista de amostras
+     */
+    @GetMapping("/aguardando-analise")
+    public ResponseEntity<List<Amostra>> findAmostraAguardandoAnalise(){
+        List<Amostra> amostrasAguardandoAnalise = amostraService.findAmostraAguardandoAnalise();
+        return ResponseEntity.status(HttpStatus.OK).body(amostrasAguardandoAnalise);
+    }
 
+    /**
+     * Método HTTP que retorna uma lista de amostras em falta
+     * @return Entidade de resposta com lista de amostras
+     */
+    @GetMapping("/amostra-em-falta")
+    public ResponseEntity<List<Amostra>> findAmostraEmFalta(){
+        List<Amostra> amostrasEmFalta = amostraService.findAmostraEmFalta();
+        return ResponseEntity.status(HttpStatus.OK).body(amostrasEmFalta);
+    }
 }
 

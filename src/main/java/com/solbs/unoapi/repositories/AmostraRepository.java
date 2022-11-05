@@ -16,4 +16,9 @@ public interface AmostraRepository extends JpaRepository<Amostra, Long> {
     @Query(value = "SELECT * from TB_AMOSTRA WHERE STATUS_AMOSTRA = 1 ", nativeQuery = true)
     List<Amostra> findAmostraEmAnalise();
 
+    @Query(value = "SELECT * FROM TB_AMOSTRA WHERE STATUS_AMOSTRA = 2", nativeQuery = true)
+    List<Amostra> findAmostraAguardandoAnalise();
+
+    @Query(value = "SELECT * FROM TB_AMOSTRA WHERE STATUS_AMOSTRA = 3", nativeQuery = true)
+    List<Amostra> findAmostraEmFalta();
 }

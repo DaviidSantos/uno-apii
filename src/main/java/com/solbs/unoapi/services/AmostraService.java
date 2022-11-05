@@ -39,7 +39,7 @@ public class AmostraService {
     }
 
     /**
-     * Método que retorna todas as amostras com status: analise finalizada
+     * Método que retorna todas as amostras com status: análise finalizada
      * @return lista de amostras com analise finalizada
      */
     public List<Amostra> findAmostraAnaliseFinalizada() {
@@ -52,5 +52,17 @@ public class AmostraService {
      */
     public List<Amostra> findAmostraEmAnalise(){
         return amostraRepository.findAmostraEmAnalise();
+    }
+
+    /**
+     * Método que retorna todas as amostras com status: aguardando análise
+     * @return lista de amostras aguardando análise
+     */
+    public List<Amostra> findAmostraAguardandoAnalise() {
+        return amostraRepository.findAmostraAguardandoAnalise();
+    }
+
+    public List<Amostra> findAmostraEmFalta() {
+        return amostraRepository.findAmostraEmFalta();
     }
 }
