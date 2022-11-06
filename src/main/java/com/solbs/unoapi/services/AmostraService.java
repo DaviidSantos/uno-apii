@@ -5,6 +5,7 @@ import com.solbs.unoapi.repositories.AmostraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -34,6 +35,7 @@ public class AmostraService {
      * @param amostra amostra a ser salva
      * @return amostra salva
      */
+    @Transactional
     public Amostra save(Amostra amostra){
         return amostraRepository.save(amostra);
     }

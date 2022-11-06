@@ -58,7 +58,7 @@ public class AmostraController {
     @PostMapping
     public ResponseEntity<Amostra> saveAmostra(@RequestBody AmostraDTO amostraDTO){
         Amostra amostra = new Amostra();
-        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.retornarSolicitacaoDeAnalisePorId(amostraDTO.getSolicitacaoDeAnalise());
+        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(amostraDTO.getSolicitacaoDeAnalise());
         BeanUtils.copyProperties(amostraDTO, amostra);
         StatusAmostra statusAmostra = StatusAmostra.valor(amostraDTO.getStatusAmostra());
         amostra.setStatusAmostra(statusAmostra);

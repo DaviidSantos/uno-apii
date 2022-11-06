@@ -5,25 +5,38 @@ import com.solbs.unoapi.repositories.EnsaioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Classe de service da entidade Ensaio, utilizada pra se comunicar com a base de dados
- */
 @Service
 public class EnsaioService {
     @Autowired
     private EnsaioRepository ensaioRepository;
 
-    public List<Ensaio> retornarTodosEnsaios(){
+    /**
+     * Método que retorna uma lista com todos os ensaios cadastrados
+     * @return Lista de ensaios
+     */
+    public List<Ensaio> findAll(){
         return ensaioRepository.findAll();
     }
 
-    public Ensaio retornarEnsaioPorId(Long id) {
+    /**
+     * Método que retorna um ensaio a partir de seu id
+     * @param id Id do ensaio
+     * @return Ensaio
+     */
+    public Ensaio findById(Long id) {
         return ensaioRepository.findById(id).get();
     }
 
-    public Ensaio cadastrarEnsaio(Ensaio ensaio) {
+    /**
+     * Método que salva o ensaio na base de dados
+     * @param ensaio Ensaio a ser salvo
+     * @return Ensaio salvo
+     */
+    @Transactional
+    public Ensaio save(Ensaio ensaio) {
         return ensaioRepository.save(ensaio);
     }
 }

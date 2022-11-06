@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+/**
+ * Controlador da entidade solicitante
+ */
 @RestController
 @RequestMapping("/solicitante")
 public class SolicitanteController {
@@ -23,18 +25,18 @@ public class SolicitanteController {
      */
     @GetMapping
     public ResponseEntity<List<Solicitante>> retornarTodosSolicitantes(){
-        List<Solicitante> lista = solicitanteService.retornarTodosSolicitantes();
+        List<Solicitante> lista = solicitanteService.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(lista);
     }
 
     /**
      * Método HTTP que retorna um solicitante a partir de seu cnpj
-     * @param cnpj cnpj que será buscado na base de dados
-     * @return solicitante
+     * @param cnpj CNPJ que será buscado na base de dados
+     * @return Solicitante
      */
     @GetMapping("/{cnpj}")
     public ResponseEntity<Solicitante> retornarSolicitantePorCnpj(@PathVariable String cnpj){
-        return ResponseEntity.status(HttpStatus.OK).body(solicitanteService.retornarSolicitantePorCnpj(cnpj));
+        return ResponseEntity.status(HttpStatus.OK).body(solicitanteService.findByCNPJ(cnpj));
     }
 
     /**
@@ -46,19 +48,19 @@ public class SolicitanteController {
     public ResponseEntity<Solicitante> cadastrarSolicitante(@RequestBody Solicitante solicitante){
         Solicitante obj = new Solicitante();
         BeanUtils.copyProperties(solicitante, obj);
-        return ResponseEntity.status(HttpStatus.CREATED).body(solicitanteService.cadastrarSolicitante(solicitante));
+        return ResponseEntity.status(HttpStatus.CREATED).body(solicitanteService.save(solicitante));
     }
 
     /**
      * Método HTTP que atualiza dados cadastrais de um solicitante
-     * @param cnpj cnpj do solicitante que terá dados atualizados
-     * @param dados dados que serão atualizados no solicitante
+     * @param cnpj CNPJ do solicitante que terá dados atualizados
+     * @param dados Dados que serão atualizados no solicitante
      * @return Entidade de resposta HTTP
      */
     @PutMapping("/{cnpj}")
     public ResponseEntity<Object> atualizarSolicitante(@PathVariable String cnpj, @RequestBody Solicitante dados){
-        Solicitante solicitante = solicitanteService.retornarSolicitantePorCnpj(cnpj);
-        solicitante = solicitanteService.atualizarDados(solicitante, dados);
-        return ResponseEntity.status(HttpStatus.OK).body(solicitanteService.cadastrarSolicitante(solicitante));
+        Solicitante solicitante = solicitanteService.findByCNPJ(cnpj);
+        solicitante = solicitanteService.updateData(solicitante, dados);
+        return ResponseEntity.status(HttpStatus.OK).body(solicitanteService.save(solicitante));
     }
 }

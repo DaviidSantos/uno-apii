@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * Controlador que performa as operações de criar, retornar e atualizar dados da entidade ensaio
+ * Controlador da entidade ensaio
  */
 @RestController
 @RequestMapping("/ensaio")
@@ -28,29 +28,29 @@ public class EnsaioController {
 
     /**
      * Método HTTP que retorna uma lista de todos os ensaios cadastrados na base de dados
-     * @return entidade de resposta com lista de ensaios
+     * @return Entidade de resposta com lista de ensaios
      */
     @GetMapping
     public ResponseEntity<List<Ensaio>> retornarTodosEnsaios(){
-        List<Ensaio> ensaios = ensaioService.retornarTodosEnsaios();
+        List<Ensaio> ensaios = ensaioService.findAll();
         return ResponseEntity.ok().body(ensaios);
     }
 
     /**
      * Método HTTP que retorna um ensaio a partir de seu id
-     * @param idEnsaio id do ensaio
-     * @return entidade de resposta com o ensaio
+     * @param idEnsaio Id do ensaio
+     * @return Entidade de resposta com o ensaio
      */
     @GetMapping("/{idEnsaio}")
     public ResponseEntity<Ensaio> retornarEnsaioPorId(@PathVariable Long idEnsaio){
-        Ensaio ensaio = ensaioService.retornarEnsaioPorId(idEnsaio);
+        Ensaio ensaio = ensaioService.findById(idEnsaio);
         return ResponseEntity.status(HttpStatus.OK).body(ensaio);
     }
 
     /**
      * Método HTTP que cadastra um ensaio na base de dados
-     * @param ensaioDTO dados do ensaio a ser cadastrado
-     * @return entidadde de resposta com o ensaio cadastrado
+     * @param ensaioDTO Dados do ensaio a ser cadastrado
+     * @return Entidadde de resposta com o ensaio cadastrado
      */
     @PostMapping
     public ResponseEntity<Ensaio> cadastrarEnsaio(@RequestBody EnsaioDTO ensaioDTO){
@@ -58,21 +58,21 @@ public class EnsaioController {
         Amostra amostra = amostraService.findById(ensaioDTO.getIdAmostra());
         BeanUtils.copyProperties(ensaioDTO, ensaio);
         ensaio.setAmostra(amostra);
-        ensaio = ensaioService.cadastrarEnsaio(ensaio);
+        ensaio = ensaioService.save(ensaio);
         return ResponseEntity.status(HttpStatus.CREATED).body(ensaio);
     }
 
     /**
      * Método HTTP que cadastra o resultado do ensaio
-     * @param idEnsaio id do ensaio que terá seu resultado informado
-     * @param resultado resultado do ensaio
-     * @return entidade de resposta com o ensaio atualizado
+     * @param idEnsaio Id do ensaio que terá seu resultado informado
+     * @param resultado Resultado do ensaio
+     * @return Entidade de resposta com o ensaio atualizado
      */
     @PutMapping("/{idEnsaio}")
     public ResponseEntity<Ensaio> resultadoDoEnsaio(@PathVariable Long idEnsaio, @RequestBody String resultado){
-        Ensaio ensaio = ensaioService.retornarEnsaioPorId(idEnsaio);
+        Ensaio ensaio = ensaioService.findById(idEnsaio);
         ensaio.setResultadoDoEnsaio(resultado);
-        ensaio = ensaioService.cadastrarEnsaio(ensaio);
+        ensaio = ensaioService.save(ensaio);
         return ResponseEntity.status(HttpStatus.OK).body(ensaio);
     }
 }

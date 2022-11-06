@@ -7,27 +7,46 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SolicitanteService {
     @Autowired
     private SolicitanteRepository solicitanteRepository;
 
-    @Transactional
-    public Solicitante cadastrarSolicitante(Solicitante solicitante){
-        return solicitanteRepository.save(solicitante);
-    }
-
-    public List<Solicitante> retornarTodosSolicitantes(){
+    /**
+     * Método que retorna uma lista com todos os solicitantes
+     * @return Lista de Solicitantes
+     */
+    public List<Solicitante> findAll(){
         return solicitanteRepository.findAll();
     }
 
-    public Solicitante retornarSolicitantePorCnpj(String cnpj){
+    /**
+     * Método que retorna um solicitante a partir de seu CNPJ
+     * @param cnpj CNPJ do solicitante
+     * @return Solicitantee
+     */
+    public Solicitante findByCNPJ(String cnpj){
         return solicitanteRepository.findById(cnpj).get();
     }
 
-    public Solicitante atualizarDados(Solicitante solicitante, Solicitante dados) {
+    /**
+     * Método que salva um solicitante na base de dados
+     * @param solicitante Solicitante que será salvo
+     * @return Solicitante salvo
+     */
+    @Transactional
+    public Solicitante save(Solicitante solicitante){
+        return solicitanteRepository.save(solicitante);
+    }
+
+    /**
+     * Método que atualiza os dados de um solicitante
+     * @param solicitante Solicitante que terá os dados atualizados
+     * @param dados Dados do solicitante que serão atualizados
+     * @return Solicitante atualizado
+     */
+    public Solicitante updateData(Solicitante solicitante, Solicitante dados) {
         if (dados.getNomeSolicitante() != null) {
             solicitante.setNomeSolicitante(dados.getNomeSolicitante());
         }

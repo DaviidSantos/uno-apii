@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * Controlador da entidade Solicitação de Análise
+ */
 @RestController
 @RequestMapping("/solicitacao-de-analise")
 public class SolicitacaoDeAnaliseController {
@@ -28,7 +31,7 @@ public class SolicitacaoDeAnaliseController {
      */
     @GetMapping
     public ResponseEntity<List<SolicitacaoDeAnalise>> retornarTodosSolicitacaoDeAnalises(){
-        List<SolicitacaoDeAnalise> lista = solicitacaoDeAnaliseService.retornarTodasSolicitacoesDeAnalise();
+        List<SolicitacaoDeAnalise> lista = solicitacaoDeAnaliseService.findAll();
         return ResponseEntity.ok().body(lista);
     }
 
@@ -39,7 +42,7 @@ public class SolicitacaoDeAnaliseController {
      */
     @GetMapping("/{idSA}")
     public ResponseEntity<SolicitacaoDeAnalise> retornarSolicitacaoDeAnalisePorId(@PathVariable Long idSA){
-        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.retornarSolicitacaoDeAnalisePorId(idSA);
+        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(idSA);
         return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnalise);
     }
 
@@ -53,9 +56,9 @@ public class SolicitacaoDeAnaliseController {
         SolicitacaoDeAnalise solicitacaoDeAnalise = new SolicitacaoDeAnalise();
         BeanUtils.copyProperties(solicitacaoDeAnaliseDTO, solicitacaoDeAnalise);
         Solicitante solicitante = new Solicitante();
-        solicitante = solicitanteService.retornarSolicitantePorCnpj(solicitacaoDeAnaliseDTO.getCnpj());
+        solicitante = solicitanteService.findByCNPJ(solicitacaoDeAnaliseDTO.getCnpj());
         solicitacaoDeAnalise.setSolicitante(solicitante);
-        return ResponseEntity.status(HttpStatus.CREATED).body(solicitacaoDeAnaliseService.cadastrarSolicitacaoDeAnalise(solicitacaoDeAnalise));
+        return ResponseEntity.status(HttpStatus.CREATED).body(solicitacaoDeAnaliseService.save(solicitacaoDeAnalise));
     }
 
     /**
@@ -66,8 +69,8 @@ public class SolicitacaoDeAnaliseController {
      */
     @PutMapping("/{idSA}")
     public ResponseEntity<SolicitacaoDeAnalise> atualizarSolicitacaoDeAnalise(@PathVariable Long idSA, @RequestBody SolicitacaoDeAnaliseDTO solicitacaoDeAnaliseDTO){
-        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.retornarSolicitacaoDeAnalisePorId(idSA);
-        solicitacaoDeAnalise = solicitacaoDeAnaliseService.atualizarDados(solicitacaoDeAnalise, solicitacaoDeAnaliseDTO);
-        return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnaliseService.cadastrarSolicitacaoDeAnalise(solicitacaoDeAnalise));
+        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(idSA);
+        solicitacaoDeAnalise = solicitacaoDeAnaliseService.updateData(solicitacaoDeAnalise, solicitacaoDeAnaliseDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnaliseService.save(solicitacaoDeAnalise));
     }
 }
