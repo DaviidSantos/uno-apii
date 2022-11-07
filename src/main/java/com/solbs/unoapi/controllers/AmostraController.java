@@ -5,6 +5,7 @@ import com.solbs.unoapi.entities.Amostra;
 import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
 import com.solbs.unoapi.entities.enums.StatusAmostra;
 import com.solbs.unoapi.services.AmostraService;
+import com.solbs.unoapi.services.EtiquetaAmostraService;
 import com.solbs.unoapi.services.SolicitacaoDeAnaliseService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 
@@ -27,6 +30,9 @@ public class AmostraController {
 
     @Autowired
     private SolicitacaoDeAnaliseService solicitacaoDeAnaliseService;
+
+    @Autowired
+    EtiquetaAmostraService etiquetaAmostraService;
 
     /**
      * Método HTTP que retorna uma lista com todas as amostras na base de dados
@@ -119,6 +125,15 @@ public class AmostraController {
     public ResponseEntity<List<Amostra>> findAmostraEmFalta(){
         List<Amostra> amostrasEmFalta = amostraService.findAmostraEmFalta();
         return ResponseEntity.status(HttpStatus.OK).body(amostrasEmFalta);
+    }
+
+    @GetMapping("/etiqueta-amostra")
+    public void generateEtiqueta(HttpServletResponse response) throws IOException {
+        response.setContentType("application/pdf");
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=teste.pdf";
+        response.setHeader(headerKey, headerValue);
+        this.etiquetaAmostraService.export(response);
     }
 }
 
