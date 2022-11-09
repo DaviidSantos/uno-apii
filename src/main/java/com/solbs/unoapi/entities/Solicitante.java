@@ -12,14 +12,28 @@ public class Solicitante implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @Column(updatable = false, unique = true)
+    @Column(updatable = false)
     private String cnpj;
+
+    @Column(name = "nome_solicitante", nullable = false)
     private String nomeSolicitante;
+
+    @Column(nullable = false)
     private String cep;
+
+    @Column(nullable = false)
     private String endereco;
+
+    @Column(nullable = false)
     private String cidade;
+
+    @Column(nullable = false)
     private String estado;
+
+    @Column(name = "telefone_comercial",nullable = false)
     private String telefoneComercial;
+
+    @Column(name = "email_comercial",nullable = false)
     private String emailComercial;
 
     @OneToMany(mappedBy = "solicitante")

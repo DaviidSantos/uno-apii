@@ -16,7 +16,11 @@ public class Ensaio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String nomeEnsaio;
+
+    @Column(nullable = false)
     private String especificacao;
     private String resultadoDoEnsaio;
 

@@ -15,6 +15,8 @@ public class SolicitacaoDeAnalise {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSA;
+
+    @Column(nullable = false)
     private String tipoDeAnalise;
     private String informacoesGerais;
     private String consideracoesGerais;

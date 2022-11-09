@@ -19,17 +19,27 @@ public class Amostra {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idAmostra;
-    
+
+    @Column(nullable = false)
     private String nomeAmostra;
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_solicitacao_de_analise")
     private SolicitacaoDeAnalise solicitacaoDeAnalise;
+
+    @Column(nullable = false)
     private StatusAmostra statusAmostra;
+
     private Instant dataDeEntrada;
+
+    @Column(nullable = false)
     private String tipo;
+
+    @Column(nullable = false)
     private String notaFiscal;
+
+    @Column(nullable = false)
     private LocalDate validade;
 
     @OneToMany(mappedBy = "amostra")
