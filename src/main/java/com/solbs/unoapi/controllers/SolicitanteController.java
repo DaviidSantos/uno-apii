@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Controlador da entidade solicitante
@@ -46,9 +47,11 @@ public class SolicitanteController {
      * @return Entidade de resposta HTTP
      */
     @PostMapping
-    public ResponseEntity<Solicitante> cadastrarSolicitante(@RequestBody Solicitante solicitante){
-        Solicitante obj = new Solicitante();
-        BeanUtils.copyProperties(solicitante, obj);
+    public ResponseEntity<Object> cadastrarSolicitante(@RequestBody Solicitante solicitante){
+        if (solicitanteService.existsByCnpj(solicitante.getCnpj())){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("CNPJ já cadastrado");
+        }
+
         return ResponseEntity.status(HttpStatus.CREATED).body(solicitanteService.save(solicitante));
     }
 

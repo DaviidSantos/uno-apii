@@ -12,7 +12,7 @@ public class Solicitante implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @Column(updatable = false)
+    @Column(updatable = false, unique = true)
     private String cnpj;
     private String nomeSolicitante;
     private String cep;

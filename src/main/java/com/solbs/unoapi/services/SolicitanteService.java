@@ -76,4 +76,8 @@ public class SolicitanteService {
         }
         return solicitante;
     }
+
+    public boolean existsByCnpj(String cnpj) {
+        return solicitanteRepository.existsByCnpj(cnpj);
+    }
 }

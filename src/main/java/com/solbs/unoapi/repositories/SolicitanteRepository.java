@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SolicitanteRepository extends JpaRepository<Solicitante, String> {
+    boolean existsByCnpj(String cnpj);
 }
