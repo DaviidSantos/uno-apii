@@ -46,4 +46,15 @@ public class UsuarioService {
     public void delete(Usuario usuario){
         usuarioRepository.delete(usuario);
     }
+
+    /**
+     * Método que altera senha de um usuário
+     * @param usuario Usuário cuja senha será alterada
+     * @param novaSenha Nova senha
+     * @return Usuário atualizado
+     */
+    public Usuario alterarSenha(Usuario usuario, String novaSenha){
+        usuario.setSenha(novaSenha);
+        return usuarioRepository.save(usuario);
+    }
 }
