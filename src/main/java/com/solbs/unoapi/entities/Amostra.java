@@ -23,7 +23,6 @@ public class Amostra {
     @Column(nullable = false)
     private String nomeAmostra;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_solicitacao_de_analise")
     private SolicitacaoDeAnalise solicitacaoDeAnalise;

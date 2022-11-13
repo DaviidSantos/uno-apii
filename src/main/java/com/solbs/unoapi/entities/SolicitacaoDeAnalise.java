@@ -1,6 +1,7 @@
 package com.solbs.unoapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,32 +12,31 @@ import java.util.Set;
 @Table(name = "tb_solicitacao_de_analise")
 public class SolicitacaoDeAnalise {
     private static final Long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idSA;
-
-    @Column(nullable = false)
     private String tipoDeAnalise;
-    private String informacoesGerais;
     private String consideracoesGerais;
 
-    @JsonIgnore
+    private String informacoesAdicionais;
+
+
     @ManyToOne
     @JoinColumn(name = "cnpj_solicitante")
     private Solicitante solicitante;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "solicitacaoDeAnalise")
     private Set<Amostra> amostras = new HashSet<>();
 
     public SolicitacaoDeAnalise() {
     }
 
-    public SolicitacaoDeAnalise(Long idSA, String tipoDeAnalise, String informacoesGerais, String consideracoesGerais, Solicitante solicitante) {
+    public SolicitacaoDeAnalise(Long idSA, String tipoDeAnalise, String informacoesAdicionais, String consideracoesGerais, Solicitante solicitante) {
         this.idSA = idSA;
         this.tipoDeAnalise = tipoDeAnalise;
-        this.informacoesGerais = informacoesGerais;
         this.consideracoesGerais = consideracoesGerais;
+        this.informacoesAdicionais = informacoesAdicionais;
         this.solicitante = solicitante;
     }
 
@@ -56,12 +56,12 @@ public class SolicitacaoDeAnalise {
         this.tipoDeAnalise = tipoDeAnalise;
     }
 
-    public String getInformacoesGerais() {
-        return informacoesGerais;
+    public String getInformacoesAdicionais() {
+        return informacoesAdicionais;
     }
 
-    public void setInformacoesGerais(String informacoesGerais) {
-        this.informacoesGerais = informacoesGerais;
+    public void setInformacoesAdicionais(String informacoesAdicionais) {
+        this.informacoesAdicionais = informacoesAdicionais;
     }
 
     public String getConsideracoesGerais() {

@@ -47,7 +47,7 @@ public class TestConfig implements CommandLineRunner {
         solicitacaoDeAnaliseRepository.saveAll(Arrays.asList(sa1, sa2, sa3));
 
         Amostra a1 = new Amostra(null, "Ibuprofeno", sa1, StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Capsula", "123456789", LocalDate.parse("2022-11-15"));
-        Amostra a2 = new Amostra(null, "Dipirona",  sa2,StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Pilula", "132456789", null);
+        Amostra a2 = new Amostra(null, "Dipirona",  sa2,StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Pilula", "132456789", LocalDate.parse("2022-11-15"));
 
         amostraRepository.saveAll(Arrays.asList(a1, a2));
 

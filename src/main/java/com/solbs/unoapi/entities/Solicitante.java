@@ -1,5 +1,7 @@
 package com.solbs.unoapi.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -36,6 +38,7 @@ public class Solicitante implements Serializable {
     @Column(name = "email_comercial",nullable = false)
     private String emailComercial;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "solicitante")
     private Set<SolicitacaoDeAnalise> solicitacoesDeAnalise = new HashSet<>();
 

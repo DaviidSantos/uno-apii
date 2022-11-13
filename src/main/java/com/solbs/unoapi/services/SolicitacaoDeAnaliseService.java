@@ -59,8 +59,8 @@ public class SolicitacaoDeAnaliseService {
             solicitacaoDeAnalise.setConsideracoesGerais(solicitacaoDeAnaliseDTO.getConsideracoesGerais());
         }
 
-        if (solicitacaoDeAnaliseDTO.getInformacoesGerais() != null){
-            solicitacaoDeAnalise.setInformacoesGerais(solicitacaoDeAnaliseDTO.getInformacoesGerais());
+        if (solicitacaoDeAnaliseDTO.getInformacoesAdicionais() != null){
+            solicitacaoDeAnalise.setInformacoesAdicionais(solicitacaoDeAnaliseDTO.getInformacoesAdicionais());
         }
 
         return solicitacaoDeAnalise;

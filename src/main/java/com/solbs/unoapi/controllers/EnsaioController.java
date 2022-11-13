@@ -18,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/ensaio")
+@CrossOrigin("*")
 public class EnsaioController {
 
     @Autowired

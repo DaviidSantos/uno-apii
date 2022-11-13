@@ -20,6 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/amostra")
+@CrossOrigin("*")
 public class AmostraController {
 
     @Autowired

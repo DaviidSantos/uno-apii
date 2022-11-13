@@ -18,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/solicitacao-de-analise")
+@CrossOrigin("*")
 public class SolicitacaoDeAnaliseController {
     @Autowired
     private SolicitacaoDeAnaliseService solicitacaoDeAnaliseService;

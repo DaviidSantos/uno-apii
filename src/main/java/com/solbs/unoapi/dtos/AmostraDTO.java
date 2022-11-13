@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class AmostraDTO {
     private Long solicitacaoDeAnalise;
     private int statusAmostra;
+    private String nomeAmostra;
     private Instant dataDeEntrada;
     private String tipo;
     private String notaFiscal;
@@ -28,6 +29,14 @@ public class AmostraDTO {
 
     public void setStatusAmostra(int statusAmostra) {
         this.statusAmostra = statusAmostra;
+    }
+
+    public String getNomeAmostra() {
+        return nomeAmostra;
+    }
+
+    public void setNomeAmostra(String nomeAmostra) {
+        this.nomeAmostra = nomeAmostra;
     }
 
     public Instant getDataDeEntrada() {
