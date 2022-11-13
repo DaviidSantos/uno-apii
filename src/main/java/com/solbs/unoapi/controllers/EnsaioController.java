@@ -48,6 +48,12 @@ public class EnsaioController {
         return ResponseEntity.status(HttpStatus.OK).body(ensaio);
     }
 
+    @GetMapping("/por-amostra/{idAmostra}")
+    public ResponseEntity<List<Ensaio>> retornarEnsaioPorAmostra(@PathVariable Long idAmostra){
+        return ResponseEntity.status(HttpStatus.OK).body(ensaioService.findEnsaioByAmostra(idAmostra));
+    }
+
+
     /**
      * Método HTTP que cadastra um ensaio na base de dados
      * @param ensaioDTO Dados do ensaio a ser cadastrado

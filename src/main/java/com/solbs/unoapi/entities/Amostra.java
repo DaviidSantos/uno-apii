@@ -1,6 +1,6 @@
 package com.solbs.unoapi.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import com.solbs.unoapi.entities.enums.StatusAmostra;
 
 import javax.persistence.*;

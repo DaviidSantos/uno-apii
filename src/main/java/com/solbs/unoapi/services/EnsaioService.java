@@ -39,4 +39,8 @@ public class EnsaioService {
     public Ensaio save(Ensaio ensaio) {
         return ensaioRepository.save(ensaio);
     }
+
+    public List<Ensaio> findEnsaioByAmostra(Long idAmostra) {
+        return ensaioRepository.findEnsaioByAmostra(idAmostra);
+    }
 }

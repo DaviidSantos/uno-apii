@@ -51,7 +51,7 @@ public class TestConfig implements CommandLineRunner {
 
         amostraRepository.saveAll(Arrays.asList(a1, a2));
 
-        Ensaio e1 = new Ensaio(null, "Degradação", "15x", null, a1);
+        Ensaio e1 = new Ensaio(null, "Degradação", "15x", "15", a1);
         Ensaio e2 = new Ensaio(null, "Karl Fischer", "15x", null, a1);
         Ensaio e3 = new Ensaio(null, "Solubilidade", "15x", null, a1);
         Ensaio e4 = new Ensaio(null, "Degradação", "15x", null, a2);
