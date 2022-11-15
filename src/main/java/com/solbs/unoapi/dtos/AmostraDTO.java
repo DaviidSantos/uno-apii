@@ -1,13 +1,11 @@
 package com.solbs.unoapi.dtos;
 
-import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
-import com.solbs.unoapi.entities.enums.StatusAmostra;
-
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class AmostraDTO {
-    private Long solicitacaoDeAnalise;
+    private String solicitacaoDeAnalise;
     private int statusAmostra;
     private String nomeAmostra;
     private Instant dataDeEntrada;
@@ -15,11 +13,11 @@ public class AmostraDTO {
     private String notaFiscal;
     private LocalDate validade;
 
-    public Long getSolicitacaoDeAnalise() {
+    public String getSolicitacaoDeAnalise() {
         return solicitacaoDeAnalise;
     }
 
-    public void setSolicitacaoDeAnalise(Long solicitacaoDeAnalise) {
+    public void setSolicitacaoDeAnalise(String solicitacaoDeAnalise) {
         this.solicitacaoDeAnalise = solicitacaoDeAnalise;
     }
 

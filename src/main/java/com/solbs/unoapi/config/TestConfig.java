@@ -33,7 +33,6 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private EnsaioRepository ensaioRepository;
-
     @Override
     public void run(String... args) throws Exception {
         Solicitante s1 = new Solicitante("42923299000104", "David", "13331344", "Rua Carlos Sartorello", "Indaiatuba", "São Paulo", "19989971070", "daavid.psantos@gmail.com");
@@ -46,8 +45,8 @@ public class TestConfig implements CommandLineRunner {
         SolicitacaoDeAnalise sa3 = new SolicitacaoDeAnalise(null, "Monitoramento", "Teste", "Testando", s2);
         solicitacaoDeAnaliseRepository.saveAll(Arrays.asList(sa1, sa2, sa3));
 
-        Amostra a1 = new Amostra(null, "Ibuprofeno", sa1, StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Capsula", "123456789", LocalDate.parse("2022-11-15"));
-        Amostra a2 = new Amostra(null, "Dipirona",  sa2,StatusAmostra.AGUARDANDO_ANALISE, Instant.now(), "Pilula", "132456789", LocalDate.parse("2022-11-15"));
+        Amostra a1 = new Amostra(null, "Ibuprofeno", sa1, StatusAmostra.AGUARDANDO_ANÁLISE, Instant.now(), "Capsula", "123456789", LocalDate.parse("2022-11-15"));
+        Amostra a2 = new Amostra(null, "Dipirona",  sa2,StatusAmostra.AGUARDANDO_ANÁLISE, Instant.now(), "Pilula", "132456789", LocalDate.parse("2022-11-15"));
 
         amostraRepository.saveAll(Arrays.asList(a1, a2));
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SolicitacaoDeAnaliseService {
@@ -30,7 +31,7 @@ public class SolicitacaoDeAnaliseService {
      * @param idSA ID da Solicitação de Análise
      * @return Solicitação de Análise
      */
-    public SolicitacaoDeAnalise findById(Long idSA) {
+    public SolicitacaoDeAnalise findById(String idSA) {
         return solicitacaoDeAnaliseRepository.findById(idSA).get();
     }
 

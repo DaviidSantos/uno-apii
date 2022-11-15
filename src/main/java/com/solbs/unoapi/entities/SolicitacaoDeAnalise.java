@@ -1,20 +1,29 @@
 package com.solbs.unoapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.solbs.unoapi.entities.customid.IdPrefixado;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tb_solicitacao_de_analise")
 public class SolicitacaoDeAnalise {
     private static final Long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idSA;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sa_seq")
+    @GenericGenerator(name = "sa_seq", strategy = "com.solbs.unoapi.entities.customid.IdPrefixado",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.INCREMENT_PARAM, value = "100"),
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.VALUE_PREFIX_PARAMETER, value = "SA_"),
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.NUMBER_FORMAT_PARAMETER, value = "%05d")
+            })
+    private String idSA;
     private String tipoDeAnalise;
     private String consideracoesGerais;
 
@@ -32,7 +41,7 @@ public class SolicitacaoDeAnalise {
     public SolicitacaoDeAnalise() {
     }
 
-    public SolicitacaoDeAnalise(Long idSA, String tipoDeAnalise, String informacoesAdicionais, String consideracoesGerais, Solicitante solicitante) {
+    public SolicitacaoDeAnalise(String idSA, String tipoDeAnalise, String informacoesAdicionais, String consideracoesGerais, Solicitante solicitante) {
         this.idSA = idSA;
         this.tipoDeAnalise = tipoDeAnalise;
         this.consideracoesGerais = consideracoesGerais;
@@ -40,11 +49,11 @@ public class SolicitacaoDeAnalise {
         this.solicitante = solicitante;
     }
 
-    public Long getIdSA() {
+    public String getIdSA() {
         return idSA;
     }
 
-    public void setIdSA(Long idSA) {
+    public void setIdSA(String idSA) {
         this.idSA = idSA;
     }
 

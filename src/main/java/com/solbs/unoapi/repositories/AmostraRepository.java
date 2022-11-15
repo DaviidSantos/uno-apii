@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.UUID;
 
 @Repository
-public interface AmostraRepository extends JpaRepository<Amostra, Long> {
+public interface AmostraRepository extends JpaRepository<Amostra, String> {
 
     @Query(value = "SELECT * FROM TB_AMOSTRA WHERE STATUS_AMOSTRA = 0", nativeQuery = true)
     List<Amostra> findAmostrasAnaliseFinalizada();
@@ -21,4 +22,7 @@ public interface AmostraRepository extends JpaRepository<Amostra, Long> {
 
     @Query(value = "SELECT * FROM TB_AMOSTRA WHERE STATUS_AMOSTRA = 3", nativeQuery = true)
     List<Amostra> findAmostraEmFalta();
+
+    @Query(value = "SELECT COUNT(ID_AMOSTRA) AS ID FROM TB_AMOSTRA" ,nativeQuery = true)
+    int quantidadeDeAmostras();
 }

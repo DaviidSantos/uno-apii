@@ -1,9 +1,9 @@
 package com.solbs.unoapi.entities.enums;
 
 public enum StatusAmostra {
-    ANALISE_FINALIZADA(1),
-    EM_ANALISE(2),
-    AGUARDANDO_ANALISE(3),
+    ANÁLISE_FINALIZADA(1),
+    EM_ANÁLISE(2),
+    AGUARDANDO_ANÁLISE(3),
     AMOSTRA_EM_FALTA(4);
 
     private int code;

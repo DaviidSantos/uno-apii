@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class EnsaioService {
@@ -26,7 +27,7 @@ public class EnsaioService {
      * @param id Id do ensaio
      * @return Ensaio
      */
-    public Ensaio findById(Long id) {
+    public Ensaio findById(String id) {
         return ensaioRepository.findById(id).get();
     }
 

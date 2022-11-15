@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class AmostraService {
@@ -26,7 +27,7 @@ public class AmostraService {
      * @param idAmostra id da amostra
      * @return amostra
      */
-    public Amostra findById(Long idAmostra) {
+    public Amostra findById(String idAmostra) {
         return amostraRepository.findById(idAmostra).get();
     }
 

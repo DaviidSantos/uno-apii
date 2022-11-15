@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Controlador da entidade ensaio
@@ -43,7 +44,7 @@ public class EnsaioController {
      * @return Entidade de resposta com o ensaio
      */
     @GetMapping("/{idEnsaio}")
-    public ResponseEntity<Ensaio> retornarEnsaioPorId(@PathVariable Long idEnsaio){
+    public ResponseEntity<Ensaio> retornarEnsaioPorId(@PathVariable String idEnsaio){
         Ensaio ensaio = ensaioService.findById(idEnsaio);
         return ResponseEntity.status(HttpStatus.OK).body(ensaio);
     }
@@ -76,7 +77,7 @@ public class EnsaioController {
      * @return Entidade de resposta com o ensaio atualizado
      */
     @PutMapping("/{idEnsaio}")
-    public ResponseEntity<Ensaio> resultadoDoEnsaio(@PathVariable Long idEnsaio, @RequestBody String resultado){
+    public ResponseEntity<Ensaio> resultadoDoEnsaio(@PathVariable String idEnsaio, @RequestBody String resultado){
         Ensaio ensaio = ensaioService.findById(idEnsaio);
         ensaio.setResultadoDoEnsaio(resultado);
         ensaio = ensaioService.save(ensaio);

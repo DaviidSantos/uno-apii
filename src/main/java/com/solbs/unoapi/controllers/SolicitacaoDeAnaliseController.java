@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Controlador da entidade Solicitação de Análise
@@ -42,7 +43,7 @@ public class SolicitacaoDeAnaliseController {
      * @return Entidade de resposta com a solicitação de análise retornada
      */
     @GetMapping("/{idSA}")
-    public ResponseEntity<SolicitacaoDeAnalise> retornarSolicitacaoDeAnalisePorId(@PathVariable Long idSA){
+    public ResponseEntity<SolicitacaoDeAnalise> retornarSolicitacaoDeAnalisePorId(@PathVariable String idSA){
         SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(idSA);
         return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnalise);
     }
@@ -69,7 +70,7 @@ public class SolicitacaoDeAnaliseController {
      * @return Entidade de resposta com a Solicitação de Análise atualizada
      */
     @PutMapping("/{idSA}")
-    public ResponseEntity<SolicitacaoDeAnalise> atualizarSolicitacaoDeAnalise(@PathVariable Long idSA, @RequestBody SolicitacaoDeAnaliseDTO solicitacaoDeAnaliseDTO){
+    public ResponseEntity<SolicitacaoDeAnalise> atualizarSolicitacaoDeAnalise(@PathVariable String idSA, @RequestBody SolicitacaoDeAnaliseDTO solicitacaoDeAnaliseDTO){
         SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(idSA);
         solicitacaoDeAnalise = solicitacaoDeAnaliseService.updateData(solicitacaoDeAnalise, solicitacaoDeAnaliseDTO);
         return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnaliseService.save(solicitacaoDeAnalise));

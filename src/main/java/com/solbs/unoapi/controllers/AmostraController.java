@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Controlador da entidade amostra
@@ -47,7 +48,7 @@ public class AmostraController {
      * @return Entidade de resposta com a amostra
      */
     @GetMapping("/{idAmostra}")
-    public ResponseEntity<Amostra> findById(@PathVariable Long idAmostra){
+    public ResponseEntity<Amostra> findById(@PathVariable String idAmostra){
         Amostra amostra = amostraService.findById(idAmostra);
         return ResponseEntity.status(HttpStatus.OK).body(amostra);
     }
@@ -76,7 +77,7 @@ public class AmostraController {
      * @return Entidade de resposta com a amostra atualizada
      */
     @PutMapping("/{idAmostra}")
-    public ResponseEntity<Amostra> updateStatusAmostra(@PathVariable Long idAmostra, @RequestBody int status){
+    public ResponseEntity<Amostra> updateStatusAmostra(@PathVariable String idAmostra, @RequestBody int status){
         Amostra amostra = amostraService.findById(idAmostra);
         StatusAmostra statusAmostra = StatusAmostra.valor(status);
         amostra.setStatusAmostra(statusAmostra);

@@ -1,9 +1,12 @@
 package com.solbs.unoapi.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.solbs.unoapi.entities.customid.IdPrefixado;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  * Entidade ensaio
@@ -14,8 +17,14 @@ public class Ensaio {
     private static final Long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ensaio_seq")
+    @GenericGenerator(name = "ensaio_seq", strategy = "com.solbs.unoapi.entities.customid.IdPrefixado",
+            parameters = {
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.INCREMENT_PARAM, value = "100"),
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.VALUE_PREFIX_PARAMETER, value = "EN_"),
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.NUMBER_FORMAT_PARAMETER, value = "%05d")
+            })
+    private String id;
 
     @Column(nullable = false)
     private String nomeEnsaio;
@@ -32,7 +41,7 @@ public class Ensaio {
     public Ensaio() {
     }
 
-    public Ensaio(Long id, String nomeEnsaio, String especificacao, String resultadoDoEnsaio, Amostra amostra) {
+    public Ensaio(String id, String nomeEnsaio, String especificacao, String resultadoDoEnsaio, Amostra amostra) {
         this.id = id;
         this.nomeEnsaio = nomeEnsaio;
         this.especificacao = especificacao;
@@ -40,11 +49,11 @@ public class Ensaio {
         this.amostra = amostra;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
