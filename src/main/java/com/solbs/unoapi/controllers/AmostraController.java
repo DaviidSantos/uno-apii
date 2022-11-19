@@ -1,6 +1,7 @@
 package com.solbs.unoapi.controllers;
 
 import com.solbs.unoapi.dtos.AmostraDTO;
+import com.solbs.unoapi.dtos.QuantidadeStatusAmostra;
 import com.solbs.unoapi.entities.Amostra;
 import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
 import com.solbs.unoapi.entities.enums.StatusAmostra;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.Instant;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Controlador da entidade amostra
@@ -122,6 +122,15 @@ public class AmostraController {
     public ResponseEntity<List<Amostra>> findAmostraEmFalta(){
         List<Amostra> amostrasEmFalta = amostraService.findAmostraEmFalta();
         return ResponseEntity.status(HttpStatus.OK).body(amostrasEmFalta);
+    }
+
+    /**
+     * Método HTTP que retorna a quantidade de amostra em cada status
+     * @return Entidade de resposta com a quantidade de amostra em cada status
+     */
+    @GetMapping("/quantidade-status")
+    public ResponseEntity<QuantidadeStatusAmostra> quantidadeAmostrasPorStatus(){
+        return ResponseEntity.status(HttpStatus.OK).body(amostraService.retornarQuantidadeAmostraPorStatus());
     }
 }
 
