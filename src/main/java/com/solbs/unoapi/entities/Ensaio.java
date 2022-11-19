@@ -21,10 +21,10 @@ public class Ensaio {
     @GenericGenerator(name = "ensaio_seq", strategy = "com.solbs.unoapi.entities.customid.IdPrefixado",
             parameters = {
                     @org.hibernate.annotations.Parameter(name = IdPrefixado.INCREMENT_PARAM, value = "100"),
-                    @org.hibernate.annotations.Parameter(name = IdPrefixado.VALUE_PREFIX_PARAMETER, value = "EN_"),
+                    @org.hibernate.annotations.Parameter(name = IdPrefixado.VALUE_PREFIX_PARAMETER, value = "EN"),
                     @org.hibernate.annotations.Parameter(name = IdPrefixado.NUMBER_FORMAT_PARAMETER, value = "%05d")
             })
-    private String id;
+    private String idEnsaio;
 
     @Column(nullable = false)
     private String nomeEnsaio;
@@ -41,8 +41,8 @@ public class Ensaio {
     public Ensaio() {
     }
 
-    public Ensaio(String id, String nomeEnsaio, String especificacao, String resultadoDoEnsaio, Amostra amostra) {
-        this.id = id;
+    public Ensaio(String idEnsaio, String nomeEnsaio, String especificacao, String resultadoDoEnsaio, Amostra amostra) {
+        this.idEnsaio = idEnsaio;
         this.nomeEnsaio = nomeEnsaio;
         this.especificacao = especificacao;
         this.resultadoDoEnsaio = resultadoDoEnsaio;
@@ -50,11 +50,11 @@ public class Ensaio {
     }
 
     public String getId() {
-        return id;
+        return idEnsaio;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.idEnsaio = id;
     }
 
     public String getNomeEnsaio() {
@@ -96,11 +96,11 @@ public class Ensaio {
 
         Ensaio ensaio = (Ensaio) o;
 
-        return Objects.equals(id, ensaio.id);
+        return Objects.equals(idEnsaio, ensaio.idEnsaio);
     }
 
     @Override
     public int hashCode() {
-        return id != null ? id.hashCode() : 0;
+        return idEnsaio != null ? idEnsaio.hashCode() : 0;
     }
 }
