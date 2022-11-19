@@ -75,4 +75,15 @@ public class SolicitacaoDeAnaliseController {
         solicitacaoDeAnalise = solicitacaoDeAnaliseService.updateData(solicitacaoDeAnalise, solicitacaoDeAnaliseDTO);
         return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnaliseService.save(solicitacaoDeAnalise));
     }
+
+    /**
+     * Método HTTP que retorna uma lista de Solicitações de Análise de um solicitante
+     * @param solicitante Solicitante das Solicitações de Análise
+     * @return Entidade de resposta com lista de Solicitações de Análise
+     */
+    @GetMapping("/solicitante/{solicitante}")
+    public ResponseEntity<List<SolicitacaoDeAnalise>> solicitacaoDeAnalisePorSolicitante(@PathVariable String solicitante){
+        Solicitante solicitanteModel = solicitanteService.findByCNPJ(solicitante);
+        return ResponseEntity.status(HttpStatus.OK).body(solicitacaoDeAnaliseService.findSolicitacaoDeAnaliseBySolicitante(solicitanteModel));
+    }
 }

@@ -2,6 +2,7 @@ package com.solbs.unoapi.services;
 
 import com.solbs.unoapi.dtos.SolicitacaoDeAnaliseDTO;
 import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
+import com.solbs.unoapi.entities.Solicitante;
 import com.solbs.unoapi.repositories.SolicitacaoDeAnaliseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,15 @@ public class SolicitacaoDeAnaliseService {
     @Transactional
     public SolicitacaoDeAnalise save(SolicitacaoDeAnalise solicitacaoDeAnalise){
         return solicitacaoDeAnaliseRepository.save(solicitacaoDeAnalise);
+    }
+
+    /**
+     * Método que retorna uma lista de Solicitações de Análise de um solicitante
+     * @param cnpj Solicitante das Solicitações de Análise
+     * @return Lista de Solicitações de Análise
+     */
+    public List<SolicitacaoDeAnalise> findSolicitacaoDeAnaliseBySolicitante(Solicitante solicitante){
+        return solicitacaoDeAnaliseRepository.findSolicitacaoDeAnaliseBySolicitante(solicitante);
     }
 
     /**
