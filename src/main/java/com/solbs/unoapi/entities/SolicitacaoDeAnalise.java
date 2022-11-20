@@ -26,14 +26,10 @@ public class SolicitacaoDeAnalise {
     private String idSA;
     private String tipoDeAnalise;
     private String consideracoesGerais;
-
     private String informacoesAdicionais;
-
-
     @ManyToOne
     @JoinColumn(name = "cnpj_solicitante")
     private Solicitante solicitante;
-
     @JsonIgnore
     @OneToMany(mappedBy = "solicitacaoDeAnalise")
     private Set<Amostra> amostras = new HashSet<>();

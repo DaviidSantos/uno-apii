@@ -48,7 +48,7 @@ public class SolicitacaoDeAnaliseService {
 
     /**
      * Método que retorna uma lista de Solicitações de Análise de um solicitante
-     * @param cnpj Solicitante das Solicitações de Análise
+     * @param solicitante Solicitante das Solicitações de Análise
      * @return Lista de Solicitações de Análise
      */
     public List<SolicitacaoDeAnalise> findSolicitacaoDeAnaliseBySolicitante(Solicitante solicitante){
