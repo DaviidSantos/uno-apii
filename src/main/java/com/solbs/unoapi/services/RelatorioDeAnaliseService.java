@@ -20,28 +20,48 @@ public class RelatorioDeAnaliseService {
         PdfWriter.getInstance(document, response.getOutputStream());
 
         document.open();
-        Font font = FontFactory.getFont(FontFactory.HELVETICA);
-        font.setSize(32);
-        HeaderFooter header = new HeaderFooter(new Phrase("Uno"), false);
+        Font titulo = FontFactory.getFont(FontFactory.TIMES);
+        titulo.setSize(30);
 
-        Paragraph uno = new Paragraph("UNO", font);
+        Font negrito = FontFactory.getFont(FontFactory.TIMES_BOLD);
+        Font corpo = FontFactory.getFont(FontFactory.TIMES);
 
-        Paragraph numSA = new Paragraph(solicitacaoDeAnalise.getIdSA());
-        Paragraph nomeSolicitante = new Paragraph(solicitante.getNomeSolicitante());
+        Paragraph valer_laboratorios = new Paragraph("Valer Laboratórios", titulo);
+        valer_laboratorios.setAlignment(Element.ALIGN_CENTER);
+        Paragraph quebraDeLinha = new Paragraph("\n");
 
+        Phrase solicitacaoItem = new Phrase("Solicitação de Análise:  ", negrito);
+        Phrase solicitanteItem = new Phrase("Solicitante:   ", negrito);
+        Phrase tipoDeAnaliseItem = new Phrase("Tipo de Análise: ", negrito);
+        Phrase numSolicitacaoDeAnalise = new Phrase(solicitacaoDeAnalise.getIdSA() + "\n", corpo);
+        Phrase nomeSolicitante = new Phrase(solicitante.getNomeSolicitante() + "\n", corpo);
+        Phrase tipoDeAnalise = new Phrase(solicitacaoDeAnalise.getTipoDeAnalise() + "\n");
 
-        document.add(uno);
-        document.add(numSA);
+        document.add(valer_laboratorios);
+        document.add(quebraDeLinha);
+        document.add(quebraDeLinha);
+        document.add(solicitacaoItem);
+        document.add(numSolicitacaoDeAnalise);
+        document.add(solicitanteItem);
         document.add(nomeSolicitante);
-        for (Amostra amostra : amostras){
-            Paragraph nomeAmostra = new Paragraph(amostra.getNomeAmostra());
-            document.add(nomeAmostra);
+        document.add(tipoDeAnaliseItem);
+        document.add(tipoDeAnalise);
+        document.add(quebraDeLinha);
+
+        for(Amostra amostra : amostras){
+            Font subTitulo = FontFactory.getFont(FontFactory.TIMES_BOLD);
+            subTitulo.setSize(14);
+            Paragraph numeroAmostra = new Paragraph("Amostra: " + amostra.getNomeAmostra(), subTitulo);
+            document.add(numeroAmostra);
             Set<Ensaio> ensaios = amostra.getEnsaios();
-            for (Ensaio ensaio : ensaios){
-                Paragraph nomeEnsaio = new Paragraph(ensaio.getNomeEnsaio());
-                document.add(nomeEnsaio);
+            for(Ensaio ensaio : ensaios){
+                Paragraph ensaioItem = new Paragraph("         Ensaio: " + ensaio.getNomeEnsaio(), negrito);
+                document.add(ensaioItem);
+                Paragraph resultado = new Paragraph("                  Especificação: " + ensaio.getEspecificacao() + "                   Resultado: " + ensaio.getResultadoDoEnsaio(), corpo);
+                document.add(resultado);
             }
         }
         document.close();
+
     }
 }

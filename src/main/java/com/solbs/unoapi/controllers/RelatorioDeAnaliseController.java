@@ -28,7 +28,7 @@ public class RelatorioDeAnaliseController {
     public void gerarRelatorioDeAnalise(@PathVariable String idSA, HttpServletResponse response) throws IOException {
         response.setContentType("application/pdf");
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=pdf_" + idSA + ".pdf";
+        String headerValue = "attachment; filename=" + idSA + ".pdf";
         response.setHeader(headerKey, headerValue);
         SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(idSA);
         Solicitante solicitante = solicitacaoDeAnalise.getSolicitante();
