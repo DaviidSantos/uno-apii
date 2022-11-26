@@ -18,7 +18,7 @@ public class Solicitante implements Serializable {
     private String cnpj;
 
     @Column(name = "nome_solicitante", nullable = false)
-    private String nomeSolicitante;
+    private String nomeFantasia;
 
     @Column(nullable = false)
     private String cep;
@@ -45,9 +45,9 @@ public class Solicitante implements Serializable {
     public Solicitante() {
     }
 
-    public Solicitante(String cnpj, String nomeSolicitante, String cep, String endereco, String cidade, String estado, String telefoneComercial, String emailComercial) {
+    public Solicitante(String cnpj, String nomeFantasia, String cep, String endereco, String cidade, String estado, String telefoneComercial, String emailComercial) {
         this.cnpj = cnpj;
-        this.nomeSolicitante = nomeSolicitante;
+        this.nomeFantasia = nomeFantasia;
         this.cep = cep;
         this.endereco = endereco;
         this.cidade = cidade;
@@ -64,12 +64,12 @@ public class Solicitante implements Serializable {
         this.cnpj = cnpj;
     }
 
-    public String getNomeSolicitante() {
-        return nomeSolicitante;
+    public String getNomeFantasia() {
+        return nomeFantasia;
     }
 
-    public void setNomeSolicitante(String nomeSolicitante) {
-        this.nomeSolicitante = nomeSolicitante;
+    public void setNomeFantasia(String nomeSolicitante) {
+        this.nomeFantasia = nomeSolicitante;
     }
 
     public String getCep() {

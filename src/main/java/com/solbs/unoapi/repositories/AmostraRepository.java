@@ -1,6 +1,7 @@
 package com.solbs.unoapi.repositories;
 
 import com.solbs.unoapi.entities.Amostra;
+import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -34,5 +35,5 @@ public interface AmostraRepository extends JpaRepository<Amostra, String> {
     @Query(value = "SELECT count(*) FROM TB_AMOSTRA WHERE STATUS_AMOSTRA = 2", nativeQuery = true)
     int quantidadeAguardandoAnalise();
 
-
+    List<Amostra> findAmostraBySolicitacaoDeAnalise(SolicitacaoDeAnalise solicitacaoDeAnalise);
 }

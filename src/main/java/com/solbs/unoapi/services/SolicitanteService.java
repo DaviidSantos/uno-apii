@@ -47,8 +47,8 @@ public class SolicitanteService {
      * @return Solicitante atualizado
      */
     public Solicitante updateData(Solicitante solicitante, Solicitante dados) {
-        if (dados.getNomeSolicitante() != null) {
-            solicitante.setNomeSolicitante(dados.getNomeSolicitante());
+        if (dados.getNomeFantasia() != null) {
+            solicitante.setNomeFantasia(dados.getNomeFantasia());
         }
 
         if (dados.getCep() != null) {

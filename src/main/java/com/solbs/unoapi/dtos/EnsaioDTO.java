@@ -1,22 +1,20 @@
 package com.solbs.unoapi.dtos;
 
-import java.util.UUID;
-
 /**
  * Classe de transferência de dados utilizada para como modelo para efetuar as operações com a base de dados
  */
 public class EnsaioDTO {
-    private String idAmostra;
+    private String amostra;
     private String nomeEnsaio;
     private String especificacao;
     private String resultadoDoEnsaio;
 
-    public String getIdAmostra() {
-        return idAmostra;
+    public String getAmostra() {
+        return amostra;
     }
 
-    public void setIdAmostra(String idAmostra) {
-        this.idAmostra = idAmostra;
+    public void setAmostra(String amostra) {
+        this.amostra = amostra;
     }
 
     public String getNomeEnsaio() {

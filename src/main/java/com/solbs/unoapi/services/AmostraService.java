@@ -2,6 +2,7 @@ package com.solbs.unoapi.services;
 
 import com.solbs.unoapi.dtos.QuantidadeStatusAmostra;
 import com.solbs.unoapi.entities.Amostra;
+import com.solbs.unoapi.entities.SolicitacaoDeAnalise;
 import com.solbs.unoapi.repositories.AmostraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,6 +72,10 @@ public class AmostraService {
      */
     public List<Amostra> findAmostraEmFalta() {
         return amostraRepository.findAmostraEmFalta();
+    }
+
+    public List<Amostra> findAmostraBySolicitacaoDeAnalise(SolicitacaoDeAnalise solicitacaoDeAnalise){
+        return amostraRepository.findAmostraBySolicitacaoDeAnalise(solicitacaoDeAnalise);
     }
 
     /**

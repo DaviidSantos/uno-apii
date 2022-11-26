@@ -62,7 +62,7 @@ public class EnsaioController {
     @PostMapping
     public ResponseEntity<Ensaio> cadastrarEnsaio(@RequestBody EnsaioDTO ensaioDTO){
         Ensaio ensaio = new Ensaio();
-        Amostra amostra = amostraService.findById(ensaioDTO.getIdAmostra());
+        Amostra amostra = amostraService.findById(ensaioDTO.getAmostra());
         BeanUtils.copyProperties(ensaioDTO, ensaio);
         ensaio.setAmostra(amostra);
         ensaio = ensaioService.save(ensaio);

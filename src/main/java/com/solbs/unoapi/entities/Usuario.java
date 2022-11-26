@@ -1,5 +1,7 @@
 package com.solbs.unoapi.entities;
 
+import com.solbs.unoapi.entities.enums.Cargos;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -15,7 +17,7 @@ public class Usuario {
     private String nome;
 
     @Column(nullable = false)
-    private String cargo;
+    private Cargos cargo;
 
     @Column(nullable = false)
     private String email;
@@ -26,7 +28,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long idUsuario, String nome, String cargo, String email, String senha) {
+    public Usuario(Long idUsuario, String nome, Cargos cargo, String email, String senha) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.cargo = cargo;
@@ -50,11 +52,11 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCargo() {
+    public Cargos getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
+    public void setCargo(Cargos cargo) {
         this.cargo = cargo;
     }
 

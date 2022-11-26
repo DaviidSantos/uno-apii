@@ -34,7 +34,7 @@ public class RelatorioDeAnaliseService {
         Phrase solicitanteItem = new Phrase("Solicitante:   ", negrito);
         Phrase tipoDeAnaliseItem = new Phrase("Tipo de Análise: ", negrito);
         Phrase numSolicitacaoDeAnalise = new Phrase(solicitacaoDeAnalise.getIdSA() + "\n", corpo);
-        Phrase nomeSolicitante = new Phrase(solicitante.getNomeSolicitante() + "\n", corpo);
+        Phrase nomeSolicitante = new Phrase(solicitante.getNomeFantasia() + "\n", corpo);
         Phrase tipoDeAnalise = new Phrase(solicitacaoDeAnalise.getTipoDeAnalise() + "\n");
 
         document.add(valer_laboratorios);

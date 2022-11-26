@@ -132,5 +132,11 @@ public class AmostraController {
     public ResponseEntity<QuantidadeStatusAmostra> quantidadeAmostrasPorStatus(){
         return ResponseEntity.status(HttpStatus.OK).body(amostraService.retornarQuantidadeAmostraPorStatus());
     }
+
+    @GetMapping("/solicitacao-de-analise/{idSA}")
+    public ResponseEntity<List<Amostra>> retornarAmostrasPorSolicitacaoDeAnalise(@PathVariable String idSA){
+        SolicitacaoDeAnalise solicitacaoDeAnalise = solicitacaoDeAnaliseService.findById(idSA);
+        return ResponseEntity.status(HttpStatus.OK).body(amostraService.findAmostraBySolicitacaoDeAnalise(solicitacaoDeAnalise));
+    }
 }
 
